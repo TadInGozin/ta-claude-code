@@ -1,0 +1,16 @@
+{
+  "name": "ta-claude-code",
+  "owner": {
+    "name": "TaTa Team",
+    "email": "tata@example.com"
+  },
+  "description": "TaTa's AI depository - A collection of Claude Code plugins for AI-powered development",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "personality-generator",
+      "source": "./plugins/generate-personal-module",
+      "description": "交互式人格模型生成器 - AI引导的7轮对话构建专属人格"
+    }
+  ]
+}

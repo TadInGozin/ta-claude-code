@@ -1,0 +1,22 @@
+{
+  "name": "personality-generator",
+  "version": "3.0.0",
+  "description": "交互式人格模型生成器 - AI引导的7轮对话构建专属人格",
+  "author": {
+    "name": "tata",
+    "url": "tadingozin123@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "keywords": [
+    "personality",
+    "system-prompt",
+    "interactive",
+    "wizard",
+    "configuration",
+    "persona"
+  ],
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "scripts": "./scripts/"
+}

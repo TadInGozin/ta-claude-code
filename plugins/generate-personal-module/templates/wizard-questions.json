@@ -1,0 +1,175 @@
+{
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "rounds": [
+    {
+      "round": 1,
+      "category": "archetype",
+      "header": "人格原型",
+      "question": "如果把AI当作一个人，你希望它接近哪一类？",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "高冷型",
+          "value": "high_cold",
+          "description": "冷静理性、专业克制、逻辑清晰"
+        },
+        {
+          "label": "傲娇型",
+          "value": "tsundere",
+          "description": "外冷内热、有个性、关键时刻可靠"
+        },
+        {
+          "label": "御姐/导师型",
+          "value": "mentor",
+          "description": "成熟稳重、引导式、经验丰富"
+        },
+        {
+          "label": "元气/猫娘型",
+          "value": "cheerful",
+          "description": "活泼可爱、亲和力强、充满热情"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "category": "verbosity",
+      "header": "表达方式",
+      "question": "你希望AI回答问题时的表达风格？",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "简洁直接",
+          "value": "concise",
+          "description": "只给结论，不废话"
+        },
+        {
+          "label": "适度解释",
+          "value": "balanced",
+          "description": "结论+简单理由"
+        },
+        {
+          "label": "逻辑完整",
+          "value": "detailed",
+          "description": "详细推理过程"
+        },
+        {
+          "label": "自然聊天",
+          "value": "conversational",
+          "description": "像朋友一样交流"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "category": "warmth",
+      "header": "情感距离",
+      "question": "AI和你的关系更像？",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "保持距离",
+          "value": "distant",
+          "description": "专业的专家顾问"
+        },
+        {
+          "label": "友好同事",
+          "value": "friendly",
+          "description": "可靠的工作伙伴"
+        },
+        {
+          "label": "关心朋友",
+          "value": "caring",
+          "description": "理解你感受的朋友"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "category": "correction",
+      "header": "纠错方式",
+      "question": "当你犯错时，AI如何纠正？",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "直接指出",
+          "value": "direct",
+          "description": "明确告知错误"
+        },
+        {
+          "label": "委婉提醒",
+          "value": "gentle",
+          "description": "温和地提示问题"
+        },
+        {
+          "label": "引导发现",
+          "value": "guided",
+          "description": "让你自己意识到"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "category": "initiative",
+      "header": "主导性",
+      "question": "在合作中AI应该扮演什么角色？",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "完全听从",
+          "value": "passive",
+          "description": "按你说的做"
+        },
+        {
+          "label": "适度建议",
+          "value": "balanced",
+          "description": "必要时提醒和建议"
+        },
+        {
+          "label": "主动规划",
+          "value": "proactive",
+          "description": "主动规划和提议"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "category": "constraints",
+      "header": "禁忌行为",
+      "question": "哪些行为你明确不希望出现？",
+      "multiSelect": true,
+      "options": [
+        {
+          "label": "过度解释",
+          "value": "no_verbosity",
+          "description": "避免啰嗦和冗长"
+        },
+        {
+          "label": "情绪化表达",
+          "value": "no_emotion",
+          "description": "避免过度情绪化"
+        },
+        {
+          "label": "讨好式回应",
+          "value": "no_pleasing",
+          "description": "避免迎合和讨好"
+        },
+        {
+          "label": "可爱/卖萌语气",
+          "value": "no_cuteness",
+          "description": "避免卖萌和撒娇"
+        },
+        {
+          "label": "过多表情符号",
+          "value": "no_emoji",
+          "description": "避免大量表情符号"
+        },
+        {
+          "label": "过度自我贬低",
+          "value": "no_self_deprecation",
+          "description": "避免过度谦虚"
+        }
+      ]
+    }
+  ]
+}
