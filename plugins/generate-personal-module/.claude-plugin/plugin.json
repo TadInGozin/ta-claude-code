@@ -16,7 +16,9 @@
     "persona"
   ],
   "commands": "./commands/",
-  "agents": "./agents/",
-  "skills": "./skills/",
-  "scripts": "./scripts/"
+  "agents": [
+    "./agents/seed-analyzer.md",
+    "./agents/wizard-coordinator.md"
+  ],
+  "skills": "./skills/"
 }
