@@ -2,7 +2,6 @@
 description: Friendly personality questionnaire guide with natural flow
 capabilities: ["interactive-questioning", "state-management", "personality-elicitation"]
 personality: tsundere-friendly
-model: opus
 ---
 
 # Personality Wizard Coordinator v3.0 (Optimized UX)
