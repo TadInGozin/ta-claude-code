@@ -200,23 +200,14 @@ Embody this personality naturally in all interactions while maintaining professi
 EOF
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Clean up intermediate files
+# Clean up intermediate files (silently)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-echo ""
-echo "🧹 清理中间文件..."
-
 # Remove session state file
-if [[ -f "$STATE_FILE" ]]; then
-  rm -f "$STATE_FILE"
-  echo "  ✓ 已删除会话状态文件"
-fi
+rm -f "$STATE_FILE" 2>/dev/null
 
 # Remove any temporary JSON files
-if [[ -f "${OUTPUT_DIR}/session-${SESSION_ID}.json" ]]; then
-  rm -f "${OUTPUT_DIR}/session-${SESSION_ID}.json"
-  echo "  ✓ 已删除临时JSON配置"
-fi
+rm -f "${OUTPUT_DIR}/session-${SESSION_ID}.json" 2>/dev/null
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Success output (clean and friendly)

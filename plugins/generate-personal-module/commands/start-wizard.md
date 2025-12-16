@@ -16,7 +16,7 @@ Interactive personality model generator with natural conversational flow.
 
 ### Round 0: Seed Keyword Collection
 
-**Invoke seed-analyzer-v3 agent** to handle this round:
+**Invoke seed-analyzer agent** to handle this round:
 
 ```
 嘿~ 我们来创建你的专属AI人格吧！
@@ -36,7 +36,7 @@ Interactive personality model generator with natural conversational flow.
 
 ### Rounds 1-6: Personality Questionnaire
 
-**Invoke wizard-coordinator-v3 agent** to handle these rounds:
+**Invoke wizard-coordinator agent** to handle these rounds:
 
 1. Welcome message
 2. Collect Batch 1 (Rounds 1-4) via AskUserQuestion
@@ -48,10 +48,10 @@ Interactive personality model generator with natural conversational flow.
 
 ### Final: Generation & Cleanup
 
-1. Call merge-personality-v3.sh script:
+1. Call merge-personality.sh script:
    ```bash
    SESSION_ID=$(date +%s)
-   bash scripts/merge-personality-v3.sh "$SESSION_ID"
+   bash scripts/merge-personality.sh "$SESSION_ID"
    ```
 
 2. Script will:
@@ -101,9 +101,9 @@ Script: ✨ 你的AI人格模型已生成！[显示文件路径和使用方法]
 - ✅ Auto cleanup (no intermediate files left)
 
 ### Technical Changes
-- ✅ seed-analyzer-v3 handles Round 0
-- ✅ wizard-coordinator-v3 handles Rounds 1-6
-- ✅ merge-personality-v3.sh cleans up state files
+- ✅ seed-analyzer handles Round 0
+- ✅ wizard-coordinator handles Rounds 1-6
+- ✅ merge-personality.sh cleans up state files
 - ✅ No confidence scores or fusion algorithms exposed
 
 ---
@@ -137,5 +137,5 @@ Good experience:
 ---
 
 **Version**: 3.0
-**Agents**: seed-analyzer-v3 + wizard-coordinator-v3
-**Script**: merge-personality-v3.sh (with cleanup)
+**Agents**: seed-analyzer + wizard-coordinator
+**Script**: merge-personality.sh (with cleanup)

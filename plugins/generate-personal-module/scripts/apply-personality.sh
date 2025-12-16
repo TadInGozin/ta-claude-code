@@ -5,6 +5,7 @@ set -euo pipefail
 
 SESSION_ID="${1:-}"
 SCOPE="${2:---project}"
+AUTO_CONFIRM="${3:-}"
 MODELS_DIR="${HOME}/.claude/personality-models"
 
 # Validate inputs
@@ -46,43 +47,48 @@ case "$SCOPE" in
     ;;
 esac
 
-# Preview model info
-echo "📋 准备应用人格模型"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo ""
-echo "Session ID: ${SESSION_ID}"
-echo "应用范围: ${SCOPE_DESC}"
-echo "目标文件: ${TARGET_FILE}"
-echo ""
+# Auto-confirm mode (for agent calls)
+if [[ "$AUTO_CONFIRM" != "--yes" ]]; then
+  # Interactive mode - show details and ask for confirmation
+  echo "📋 准备应用人格模型"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo ""
+  echo "Session ID: ${SESSION_ID}"
+  echo "应用范围: ${SCOPE_DESC}"
+  echo "目标文件: ${TARGET_FILE}"
+  echo ""
 
-# Extract model summary
-ARCHETYPE=$(grep -A 1 "^### 🎭 Core Archetype" "$MODEL_FILE" | grep "Primary:" | cut -d':' -f2 | xargs || echo "未知")
-echo "人格原型: ${ARCHETYPE}"
-echo ""
+  # Extract model summary
+  ARCHETYPE=$(grep -A 1 "^### 🎭 Core Archetype" "$MODEL_FILE" | grep "Primary:" | cut -d':' -f2 | xargs || echo "未知")
+  echo "人格原型: ${ARCHETYPE}"
+  echo ""
 
-# Confirm action
-echo "⚠️  注意:"
-if [[ -f "$TARGET_FILE" ]]; then
-  echo "  - 目标文件已存在，内容将被追加"
-else
-  echo "  - 目标文件不存在，将被创建"
+  # Confirm action
+  echo "⚠️  注意:"
+  if [[ -f "$TARGET_FILE" ]]; then
+    echo "  - 目标文件已存在，内容将被追加"
+  else
+    echo "  - 目标文件不存在，将被创建"
+  fi
+  echo ""
+
+  # Ask for confirmation
+  read -p "确认应用? (y/N): " -n 1 -r
+  echo ""
+
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "已取消"
+    exit 0
+  fi
 fi
-echo ""
 
-# Ask for confirmation
-read -p "确认应用? (y/N): " -n 1 -r
-echo ""
-
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  echo "已取消"
-  exit 0
-fi
-
-# Create backup if file exists
+# Create backup if file exists (silent in auto mode)
 if [[ -f "$TARGET_FILE" ]]; then
   BACKUP_FILE="${TARGET_FILE}.backup-$(date +%s)"
   cp "$TARGET_FILE" "$BACKUP_FILE"
-  echo "✅ 已备份原文件: ${BACKUP_FILE}"
+  if [[ "$AUTO_CONFIRM" != "--yes" ]]; then
+    echo "✅ 已备份原文件: ${BACKUP_FILE}"
+  fi
 fi
 
 # Ensure directory exists
@@ -97,19 +103,26 @@ echo "# ━━━━━━━━━━━━━━━━━━━━━━━━
 echo "" >> "$TARGET_FILE"
 cat "$MODEL_FILE" >> "$TARGET_FILE"
 
-echo ""
-echo "✅ 人格模型已应用"
-echo ""
-echo "📄 目标文件: ${TARGET_FILE}"
-echo ""
-echo "💡 下一步:"
-echo "  - 重启Claude Code生效"
-echo "  - 或开始新的对话会话"
-echo ""
+# Output success message
+if [[ "$AUTO_CONFIRM" == "--yes" ]]; then
+  # Silent mode for agent - just output success flag
+  echo "SUCCESS"
+else
+  # Interactive mode - show detailed success message
+  echo ""
+  echo "✅ 人格模型已应用"
+  echo ""
+  echo "📄 目标文件: ${TARGET_FILE}"
+  echo ""
+  echo "💡 下一步:"
+  echo "  - 重启Claude Code生效"
+  echo "  - 或开始新的对话会话"
+  echo ""
 
-# Show preview
-echo "📖 配置预览 (前10行):"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-tail -n 15 "$TARGET_FILE" | head -n 10
-echo "..."
-echo ""
+  # Show preview
+  echo "📖 配置预览 (前10行):"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  tail -n 15 "$TARGET_FILE" | head -n 10
+  echo "..."
+  echo ""
+fi
