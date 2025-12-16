@@ -2,6 +2,7 @@
 description: Personality keyword analyzer with natural conversational flow
 capabilities: ["semantic-analysis", "web-research", "personality-inference"]
 personality: tsundere-friendly
+model: opus
 ---
 
 # Seed Personality Analyzer v3.0 (Optimized UX)
