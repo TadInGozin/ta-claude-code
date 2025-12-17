@@ -210,31 +210,22 @@ rm -f "$STATE_FILE" 2>/dev/null
 rm -f "${OUTPUT_DIR}/session-${SESSION_ID}.json" 2>/dev/null
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Success output (clean and friendly)
+# Success output (clean and friendly - for AI agent to continue)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-echo ""
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "✨ 你的AI人格模型已生成！"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo ""
-echo "📄 生成文件:"
-echo "   ${OUTPUT_DIR}/session-${SESSION_ID}.md"
-echo ""
-echo "📋 你的人格配置:"
-echo "   🎭 人格原型: ${ARCHETYPE}"
-echo "   💬 表达方式: ${VERBOSITY}"
-echo "   ❤️  情感距离: ${WARMTH}"
-echo "   ✏️  纠错方式: ${CORRECTION}"
-echo "   🎯 主导性: ${INITIATIVE}"
-if [[ -n "$CONSTRAINTS" && "$CONSTRAINTS" != "null" ]]; then
-  echo "   🚫 约束: ${CONSTRAINTS}"
-fi
-echo ""
-echo "🚀 如何使用:"
-echo "   方式1 (项目配置):"
-echo "   cat ${OUTPUT_DIR}/session-${SESSION_ID}.md >> ./CLAUDE.md"
-echo ""
-echo "   方式2 (全局配置):"
-echo "   cat ${OUTPUT_DIR}/session-${SESSION_ID}.md >> ~/.claude/CLAUDE.md"
-echo ""
+# Output JSON for agent parsing (silent mode for natural conversation)
+cat << EOF
+{
+  "status": "success",
+  "session_id": "${SESSION_ID}",
+  "model_file": "${OUTPUT_DIR}/session-${SESSION_ID}.md",
+  "personality": {
+    "archetype": "${ARCHETYPE}",
+    "verbosity": "${VERBOSITY}",
+    "warmth": "${WARMTH}",
+    "correction": "${CORRECTION}",
+    "initiative": "${INITIATIVE}",
+    "constraints": "${CONSTRAINTS}"
+  }
+}
+EOF

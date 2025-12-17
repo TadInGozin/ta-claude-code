@@ -2,7 +2,6 @@
 description: Start personality wizard with 7-round conversation (seed + 6 questions)
 allowed-tools: AskUserQuestion, Bash, Read, Write, WebSearch
 argument-hint:
-model: sonnet
 personality: tsundere-friendly
 ---
 
